@@ -60,17 +60,26 @@
   //
   // Use these bindings with https://github.com/stiang/EmacsKillRing
 
-  { "keys": ["ctrl+w"], "command": "expand_selection", "args": {"to": "word"} },
-  { "keys": ["ctrl+k"], "command": "emacs_kill_line"},
-  { "keys": ["ctrl+y"], "command": "paste" },
-  { "keys": ["ctrl+space"], "command": "emacs_set_mark" },
-  { "keys": ["ctrl+w"], "command": "emacs_kill_to_mark" },
-  { "keys": ["alt+w"], "command": "emacs_kill_ring_save" },
-  { "keys": ["command+w"], "command": "emacs_kill_ring_save" },
-  { "keys": ["ctrl+g"], "command": "cancel_mark" },
+  // { "keys": ["ctrl+w"], "command": "expand_selection", "args": {"to": "word"} },
+  // { "keys": ["ctrl+k"], "command": "emacs_kill_line"},
+  // { "keys": ["ctrl+y"], "command": "paste" },
+  // { "keys": ["ctrl+space"], "command": "emacs_set_mark" },
+  // { "keys": ["ctrl+w"], "command": "emacs_kill_to_mark" },
+  // { "keys": ["alt+w"], "command": "emacs_kill_ring_save" },
+  // { "keys": ["command+w"], "command": "emacs_kill_ring_save" },
+  // { "keys": ["ctrl+g"], "command": "cancel_mark" },
 
-  // Use these bindings if you don't want to install
-  // https://github.com/stiang/EmacsKillRing
+  // Use these bindings with Sublemacspro's kill ring:
+  { "keys": ["ctrl+k"], "command": "sbp_kill_line"},
+  { "keys": ["ctrl+y"], "command": "paste" },
+  { "keys": ["ctrl+shift+y"], "command": "sbp_yank_choice" },
+  { "keys": ["ctrl+space"], "command": "sbp_set_mark" },
+
+  { "keys": ["ctrl+w"], "command": "sbp_delete_to_mark" },
+  { "keys": ["alt+w"], "command": "sbp_kill_ring_save" },
+  { "keys": ["ctrl+g"], "command": "sbp_cancel_mark" },
+
+  // Use these bindings if you don't want a kill ring.
   //{ "keys": ["ctrl+w"], "command": "cut" },
   //{ "keys": ["alt+w"], "command": "copy" },
   //{ "keys": ["ctrl+y"], "command": "paste" }
@@ -122,10 +131,33 @@
   // else to fire off a build.
   { "keys": ["shift+alt+b"], "command": "build"},
 
+  // Aborter
+  { "keys": ["ctrl+g"], "command": "hide_overlay", "context": [
+    { "key": "overlay_visible", "operator": "equal", "operand": true }
+  ]
+  },
+
+  { "keys": ["ctrl+g"], "command": "hide_auto_complete", "context": [
+    { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+  ]
+  },
+
+  { "keys": ["ctrl+g"], "command": "hide_panel", "context": [
+    { "key": "panel_visible", "operator": "equal", "operand": true }
+  ]
+  },
+
+  // ----------------------------------------------------------------------
+  // Goto stuff
+
+  { "keys": ["ctrl+x", "ctrl+f"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+  { "keys": ["alt+g", "alt+g"], "command": "none"},
+  { "keys": ["alt+g"], "command": "show_overlay", "args": {"overlay": "goto", "rm show_files": true} },
+  { "keys": ["ctrl+x", "b"], "command": "next_view" },
+
   // ----------------------------------------------------------------------
   // Additional rebindings
   // Ctrl-P is used for line-up. Map Alt-G to "goto-anything".
-  { "keys": ["alt+g"], "command": "show_overlay", "args": {"overlay": "goto", "rm show_files": true} },
 
   // Rebind go-to-text. Default Ctrl-R/Command-R binding already used.
   { "keys": ["ctrl+alt+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
