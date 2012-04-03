@@ -36,7 +36,7 @@ def installkeybindings():
     )
 
     rm_f(keybindings_target)
-    cp("bindings/keybindings.sublime-keymap", keybindings_target)
+    cp("keybindings.sublime-keymap", keybindings_target)
 
 @task
 def installmousebindings():
@@ -50,7 +50,7 @@ def installmousebindings():
     )
 
     rm_f(mousebindings_target)
-    cp("bindings/mousebindings.sublime-mousemap", mousebindings_target)
+    cp("mousebindings.sublime-mousemap", mousebindings_target)
 
 def cp(source, dest):
     if not os.path.exists(source):

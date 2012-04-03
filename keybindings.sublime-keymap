@@ -1,3 +1,4 @@
+[
   { "keys": ["ctrl+a"], "command": "move_to", "args": {"to": "bol", "extend": false} },
   { "keys": ["ctrl+e"], "command": "move_to", "args": {"to": "eol", "extend": false} },
   { "keys": ["alt+v"], "command": "move", "args": {"by": "pages", "forward": false} },
@@ -17,7 +18,7 @@
   { "keys": ["alt+b"], "command": "move", "args": {"by": "words", "forward": false} },
   { "keys": ["alt+f"], "command": "move", "args": {"by": "word_ends", "forward": true} },
   //{ "keys": ["ctrl+o"], "command": "insert", "args": {"characters": "\n"} },
-  { "keys": ["ctrl+o"], "command": "emacs_open_line"},
+  { "keys": ["ctrl+o"], "command": "sbp_open_line"},
   //{ "keys": ["ctrl+x"], "command": "none" },
   // Can't seem to rebind ctrl-I to TAB. So, to avoid problems, just map it to
   // nothing.
@@ -31,7 +32,7 @@
   { "keys": ["ctrl+alt+o"], "command": "prompt_open_file" },
 
   // recenter_in_view is implemented as a plugin (one of mine)
-  { "keys": ["ctrl+l"], "command": "recenter_in_view" },
+  { "keys": ["ctrl+l"], "command": "sbp_recenter_in_view" },
 
   // Comment toggling
   { "keys": ["ctrl+3"], "command": "toggle_comment", "args": {"block": false} },
@@ -45,8 +46,8 @@
   // Requires parawrap.py from https://github.com/bmc/sublime-text-hacks
   //
   // Also, map "Ctrl-Q", for consistency with TextMate.
-  { "keys": ["ctrl+q"], "command": "wrap_paragraph"},
-  { "keys": ["alt+q"], "command": "wrap_paragraph"},
+  { "keys": ["ctrl+q"], "command": "sbp_wrap_paragraph"},
+  { "keys": ["alt+q"], "command": "sbp_wrap_paragraph"},
   { "keys": ["ctrl+alt+q"], "command": "exit"},
 
   // ----------------------------------------------------------------------
@@ -109,7 +110,7 @@
   
   // ----------------------------------------------------------------------
   // Alt-space = fixup-whitespace
-  { "keys": ["alt+space"], "command": "fixup_whitespace"},
+  { "keys": ["alt+space"], "command": "sbp_fixup_whitespace"},
   
   // ----------------------------------------------------------------------
   // Auto-complete bindings
@@ -124,7 +125,7 @@
   // ----------------------------------------------------------------------
   // Additional rebindings
   // Ctrl-P is used for line-up. Map Alt-G to "goto-anything".
-  { "keys": ["alt+g"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+  { "keys": ["alt+g"], "command": "show_overlay", "args": {"overlay": "goto", "rm show_files": true} },
 
   // Rebind go-to-text. Default Ctrl-R/Command-R binding already used.
   { "keys": ["ctrl+alt+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
