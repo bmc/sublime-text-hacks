@@ -1,0 +1,91 @@
+#                                                           -*- python -*-
+# Run through "paver" (http://paver.github.com/paver/).
+
+from paver.easy import *
+from paver.setuputils import setup
+
+import json
+import platform
+import os
+import shutil
+
+metadata = json.loads(''.join(open("metadata.json").readlines()))
+setup(
+    name         = metadata['name'],
+    version      = metadata['version'],
+    url          = metadata['url'],
+    author       = metadata['author'],
+    author_email = metadata['email']
+)
+
+@task
+@needs('installmousebindings', 'installkeybindings')
+def installbindings():
+    """Install the key and mouse bindings"""
+    pass
+
+@task
+def installkeybindings():
+    """Install the key bindings"""
+    sublime_platform = _get_sublime_platform()
+    base = _get_sublime_dir(sublime_platform)
+    target_dir = os.path.join(base, 'Packages', 'User')
+
+    keybindings_target = os.path.join(
+        target_dir, "Default (%s).sublime-keymap" % sublime_platform
+    )
+
+    rm_f(keybindings_target)
+    cp("bindings/keybindings.sublime-keymap", keybindings_target)
+
+@task
+def installmousebindings():
+    """Install the mouse bindings"""
+    sublime_platform = _get_sublime_platform()
+    base = _get_sublime_dir(sublime_platform)
+    target_dir = os.path.join(base, 'Packages', 'User')
+
+    mousebindings_target = os.path.join(
+        target_dir, "Default (%s).sublime-mousemap" % sublime_platform
+    )
+
+    rm_f(mousebindings_target)
+    cp("bindings/mousebindings.sublime-mousemap", mousebindings_target)
+
+def cp(source, dest):
+    if not os.path.exists(source):
+        raise Exception('Source file "%s" does not exist.' % source)
+
+    print('+ cp %s "%s"' % (source, dest))
+    shutil.copy(source, dest)
+
+def rm_f(path):
+    print('+ rm -f %s' % path)
+    if os.path.lexists(path):
+        os.unlink(path)
+
+def _map_platform(platform):
+    p = platform.lower()
+    if p == 'darwin':
+        result = 'OSX'
+    elif (p == "windows") or (p.startswith("cygwin")):
+        result = 'Windows'
+    elif p == 'linux':
+        result = "Linux"
+    else:
+        raise Exception("Unsupported Sublime platform: %s" % p)
+
+    return result
+
+def _get_sublime_dir(sublime_platform):
+    if sublime_platform == "OSX":
+        base = os.path.expanduser("~/Library/Application Support/Sublime Text 2")
+    elif sublime_platform == "Windows":
+        user = os.environ.get("USERNAME")
+        base = r'C:\Users\%s\AppData\Roaming\Sublime Text 2' % user
+    else: # Linux
+        base = os.path.expanduser("~/.config/sublime-text-2")
+    return base
+
+def _get_sublime_platform():
+    return _map_platform(platform.system())

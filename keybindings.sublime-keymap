@@ -1,0 +1,137 @@
+  { "keys": ["ctrl+a"], "command": "move_to", "args": {"to": "bol", "extend": false} },
+  { "keys": ["ctrl+e"], "command": "move_to", "args": {"to": "eol", "extend": false} },
+  { "keys": ["alt+v"], "command": "move", "args": {"by": "pages", "forward": false} },
+  { "keys": ["ctrl+v"], "command": "move", "args": {"by": "pages", "forward": true} },
+  { "keys": ["ctrl+b"], "command": "move", "args": {"by": "characters", "forward": false} },
+  { "keys": ["ctrl+f"], "command": "move", "args": {"by": "characters", "forward": true} },
+  { "keys": ["ctrl+p"], "command": "move", "args": {"by": "lines", "forward": false} },
+  { "keys": ["ctrl+n"], "command": "move", "args": {"by": "lines", "forward": true} },
+  { "keys": ["ctrl+h"], "command": "left_delete"},
+  { "keys": ["ctrl+d"], "command": "right_delete"},
+  { "keys": ["alt+d"], "command": "delete_word", "args": { "forward": true } },
+  { "keys": ["ctrl+backspace"], "command": "delete_word", "args": { "forward": false } },
+  { "keys": ["alt+backspace"], "command": "delete_word", "args": { "forward": false } },
+  { "keys": ["super+backspace"], "command": "delete_word", "args": { "forward": false } },
+  { "keys": ["ctrl+/"], "command": "undo"},
+  { "keys": ["alt+z"], "command": "undo"}, // consistency with the Mac
+  { "keys": ["alt+b"], "command": "move", "args": {"by": "words", "forward": false} },
+  { "keys": ["alt+f"], "command": "move", "args": {"by": "word_ends", "forward": true} },
+  //{ "keys": ["ctrl+o"], "command": "insert", "args": {"characters": "\n"} },
+  { "keys": ["ctrl+o"], "command": "emacs_open_line"},
+  //{ "keys": ["ctrl+x"], "command": "none" },
+  // Can't seem to rebind ctrl-I to TAB. So, to avoid problems, just map it to
+  // nothing.
+  { "keys": ["ctrl+i"], "command": "none" },
+  { "keys": ["alt+u"], "command": "upper_case" },
+  { "keys": ["alt+l"], "command": "lower_case" },
+  { "keys": ["alt+c"], "command": "title_case" },
+  { "keys": ["super+c"], "command": "title_case" },
+  { "keys": ["alt+o"], "command": "toggle_overwrite" },
+  { "keys": ["ctrl+alt+n"], "command": "new_file" },
+  { "keys": ["ctrl+alt+o"], "command": "prompt_open_file" },
+
+  // recenter_in_view is implemented as a plugin (one of mine)
+  { "keys": ["ctrl+l"], "command": "recenter_in_view" },
+
+  // Comment toggling
+  { "keys": ["ctrl+3"], "command": "toggle_comment", "args": {"block": false} },
+  { "keys": ["shift+ctrl+3"], "command": "toggle_comment", "args": {"block": true} },
+
+  // Consistency with Linux and Windows: Find all = Alt-F3 (Command-F3)
+  { "keys": ["super+f3"], "command": "find_all_under"},
+
+  // ----------------------------------------------------------------------
+  // Wrap Paragraph: use a different plugin than the stock one.
+  // Requires parawrap.py from https://github.com/bmc/sublime-text-hacks
+  //
+  // Also, map "Ctrl-Q", for consistency with TextMate.
+  { "keys": ["ctrl+q"], "command": "wrap_paragraph"},
+  { "keys": ["alt+q"], "command": "wrap_paragraph"},
+  { "keys": ["ctrl+alt+q"], "command": "exit"},
+
+  // ----------------------------------------------------------------------
+  // Alternate binding for Will Bond's Alignment plugin.
+
+  { "keys": ["alt+a"], "command": "alignment" },
+
+  // ----------------------------------------------------------------------
+  // Emacs Kill Ring Bindings
+  //
+  // Use these bindings with https://github.com/stiang/EmacsKillRing
+
+  { "keys": ["ctrl+w"], "command": "expand_selection", "args": {"to": "word"} },
+  { "keys": ["ctrl+k"], "command": "emacs_kill_line"},
+  { "keys": ["ctrl+y"], "command": "paste" },
+  { "keys": ["ctrl+space"], "command": "emacs_set_mark" },
+  { "keys": ["ctrl+w"], "command": "emacs_kill_to_mark" },
+  { "keys": ["alt+w"], "command": "emacs_kill_ring_save" },
+  { "keys": ["command+w"], "command": "emacs_kill_ring_save" },
+  { "keys": ["ctrl+g"], "command": "cancel_mark" },
+
+  // Use these bindings if you don't want to install
+  // https://github.com/stiang/EmacsKillRing
+  //{ "keys": ["ctrl+w"], "command": "cut" },
+  //{ "keys": ["alt+w"], "command": "copy" },
+  //{ "keys": ["ctrl+y"], "command": "paste" }
+  //{ "keys": ["ctrl+k"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete to Hard EOL.sublime-macro"} },
+
+  // ----------------------------------------------------------------------
+  // CTags plugin definitions
+  { "keys": ["alt+."], "command": "navigate_to_definition"},
+  // Similar to Emacs' pop-to-tag-mark
+  { "keys": ["alt+*"], "command": "jump_back"},
+  // Unbind the CTags key bindings. The Ctrl-T prefix conflits with 
+  // "transpose", and the shipped bindings don't properly fix it.
+  { "keys": ["ctrl+t", "ctrl+t"], "command": "none" },
+  { "keys": ["ctrl+t", "ctrl+b"], "command": "none" },
+  { "keys": ["ctrl+t", "ctrl+m"], "command": "none" },
+  { "keys": ["ctrl+t", "ctrl+r"], "command": "none" },
+
+  // Rebind ctrl+t again, to make sure it sticks.
+  { "keys": ["ctrl+t"], "command": "transpose" },
+
+  // ----------------------------------------------------------------------
+  // Save Bindings
+  //
+  // Ctrl-X Ctrl-S is bound to Save. So is *Alt-S*.
+  // Note that Alt-S is also bound to Save.
+
+  { "keys": ["ctrl+x", "ctrl+s"], "command": "save"},
+  { "keys": ["alt+s"], "command": "save" },
+
+  // ----------------------------------------------------------------------
+  // Search Bindings
+
+  { "keys": ["ctrl+r"], "command": "show_panel", "args": {"panel": "incremental_find", "reverse":true} },
+  { "keys": ["ctrl+s"], "command": "show_panel", "args": {"panel": "incremental_find", "reverse":false} },
+  { "keys": ["alt+r"], "command": "show_panel", "args": {"panel": "replace"} },
+  { "keys": ["super+r"], "command": "show_panel", "args": {"panel": "replace"} },
+  
+  // ----------------------------------------------------------------------
+  // Alt-space = fixup-whitespace
+  { "keys": ["alt+space"], "command": "fixup_whitespace"},
+  
+  // ----------------------------------------------------------------------
+  // Auto-complete bindings
+  //
+  // NOTE: Not necessary. Use TAB.
+  
+  // ----------------------------------------------------------------------
+  // Build bindings. Ctrl-B is being used for backward-char. Need something
+  // else to fire off a build.
+  { "keys": ["shift+alt+b"], "command": "build"},
+
+  // ----------------------------------------------------------------------
+  // Additional rebindings
+  // Ctrl-P is used for line-up. Map Alt-G to "goto-anything".
+  { "keys": ["alt+g"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+
+  // Rebind go-to-text. Default Ctrl-R/Command-R binding already used.
+  { "keys": ["ctrl+alt+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+
+  // These bindings screw me up. They default to switching tabs.
+
+  { "keys": ["ctrl+tab"], "command": "none" },
+  { "keys": ["ctrl+shift+tab"], "command": "none" }
+
+]
