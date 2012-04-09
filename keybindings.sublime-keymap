@@ -78,6 +78,8 @@
   { "keys": ["ctrl+w"], "command": "sbp_delete_to_mark" },
   { "keys": ["alt+w"], "command": "sbp_kill_ring_save" },
   { "keys": ["ctrl+g"], "command": "sbp_cancel_mark" },
+  { "keys": ["ctrl+shift+g"], "command": "cancel_mark"},
+  { "keys": ["alt+k"], "command": "sbp_kill_to_end_of_sentence"},
 
   // Use these bindings if you don't want a kill ring.
   //{ "keys": ["ctrl+w"], "command": "cut" },
