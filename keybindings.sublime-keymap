@@ -20,8 +20,8 @@
   //{ "keys": ["ctrl+o"], "command": "insert", "args": {"characters": "\n"} },
   { "keys": ["ctrl+o"], "command": "sbp_open_line"},
   //{ "keys": ["ctrl+x"], "command": "none" },
-  // Can't seem to rebind ctrl-I to TAB. So, to avoid problems, just map it to
-  // nothing.
+
+  // Rebind Ctrl+I to TAB (i.e., "reindent")
 
   { "keys": ["ctrl+i"], "command": "reindent", "context":
     [
