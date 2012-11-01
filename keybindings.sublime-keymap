@@ -22,7 +22,16 @@
   //{ "keys": ["ctrl+x"], "command": "none" },
   // Can't seem to rebind ctrl-I to TAB. So, to avoid problems, just map it to
   // nothing.
-  { "keys": ["ctrl+i"], "command": "none" },
+
+  { "keys": ["ctrl+i"], "command": "reindent", "context":
+    [
+      { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "preceding_text", "operator": "regex_match", "operand": "^$", "match_all": true },
+      { "key": "following_text", "operator": "regex_match", "operand": "^$", "match_all": true }
+    ]
+  },
+
   { "keys": ["alt+u"], "command": "upper_case" },
   { "keys": ["alt+l"], "command": "lower_case" },
   { "keys": ["alt+c"], "command": "title_case" },
